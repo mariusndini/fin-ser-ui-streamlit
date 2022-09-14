@@ -18,11 +18,11 @@ st.title( port_id )
 st.session_state['line_offset'] = 0
 
 # CONNECT TO SNOWFLAKE  
-conn = snowflake.connector.connect( user="",
-                                    password="",
-                                    account='',
-                                    role = '',
-                                    warehouse = '',
+conn = snowflake.connector.connect( user= st.secrets["user"],
+                                    password= st.secrets["password"],
+                                    account= st.secrets["account"],
+                                    role = st.secrets["role"],
+                                    warehouse = st.secrets["warehouse"],
                                     session_parameters={
                                         'QUERY_TAG': 'Streamlit',
                                     })
