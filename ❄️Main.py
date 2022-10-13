@@ -28,7 +28,7 @@ conn = snowflake.connector.connect( user= st.secrets["user"],
                                     })
 
 # function to run queries on Snowflake
-def run_query(query):
+def run_query(query): 
     with conn.cursor() as cur:
         cur.execute(query)
         return cur.fetchall()
@@ -182,9 +182,17 @@ with c2:
     st.plotly_chart(mycode.make_cpi(data=cpi), use_container_width=True, config={'staticPlot': True})
 
 with c3:
-    st.header('by Something Else')
-    st.write('Assets bucketed based on which stocks price increased or decreased withen timeframe.')
-    # st.plotly_chart(mycode.make_bar(), use_container_width=True, config={'staticPlot': True})
+    st.header('Industry Split')
+    st.write('Portfolio split by industry.')
+    industry = run_query(
+    f"""
+        select FS_RBIC_ECONOMY, count(*) as CNT
+        from STOCKFEED.META.TICK_INDUSTRY ind 
+            inner join str_app.usrdata.assets a on lower(ind.ticker) = lower(a.ticker)
+        where lower(a.id) = lower('{port_id}')
+        GROUP BY 1
+    """)
+    df = st.dataframe(industry)
 
 
 ticker_hist = run_query(
