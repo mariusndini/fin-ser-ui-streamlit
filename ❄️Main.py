@@ -159,11 +159,12 @@ market_caps = []
 vol = []
 market_advance = [ ['-5%', 0], ['-3%', 0], ['-1%', 0], ['0%', 0], ['1%', 0], ['3%', 0], ['5%', 0] ]
 
+d_total = 0;
 for index, tckr in enumerate(ticker_current):
     tickers.append( ticker_current[index][0] )
     d = (ticker_current[index][2] - ticker_prev[index][2]) / ticker_current[index][2]
     deltas.append( (ticker_current[index][2] - ticker_prev[index][2]) / ticker_current[index][2]  )
-
+    d_total = d_total + d
 
     market_caps.append(1)
     if(d < -.05):
@@ -182,11 +183,11 @@ for index, tckr in enumerate(ticker_current):
         market_advance[6][1] = market_advance[6][1] + 1
 
 
-st.write(d)
+
 
 metrics = st.columns(5)
 metrics[0].metric("Asset Count", len(ticker_hist))
-metrics[1].metric("Avg Performance", "0")
+metrics[1].metric("Avg Performance",(d_total/len(ticker_hist))*100 )
 metrics[2].metric("Expense Ratio", ".04%")
 metrics[3].metric("Declining", market_advance[0][1] + market_advance[1][1] + market_advance[2][1]  )
 metrics[4].metric("Advancing", market_advance[4][1] + market_advance[5][1] + market_advance[6][1] )
