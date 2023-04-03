@@ -187,7 +187,7 @@ for index, tckr in enumerate(ticker_current):
 
 metrics = st.columns(5)
 metrics[0].metric("Asset Count", len(ticker_hist))
-metrics[1].metric("Avg Performance",(d_total/len(ticker_hist))*100 )
+metrics[1].metric("Avg Performance", f'{round((d_total/len(ticker_hist))*100,2)}%')
 metrics[2].metric("Expense Ratio", ".04%")
 metrics[3].metric("Declining", market_advance[0][1] + market_advance[1][1] + market_advance[2][1]  )
 metrics[4].metric("Advancing", market_advance[4][1] + market_advance[5][1] + market_advance[6][1] )
@@ -203,7 +203,7 @@ with c1:
 
 with c2:
     st.header('USA CPI Index')
-    st.write('United States Consumer Price Index (Inflation) numbers.')
+    st.write('United States Consumer Price Index (Inflation) numbers. MoM')
     cpi = [ ['Jul', 0.0], ['Aug', 0.2], ['Sep', 0.4], ['Oct', 0.5], ['Nov', 0.2], ['Dec', 0.1], ['Jan', 0.5], ['Feb', 0.4] ]
     st.plotly_chart(mycode.make_cpi(data=cpi), use_container_width=True, config={'staticPlot': True})
 
