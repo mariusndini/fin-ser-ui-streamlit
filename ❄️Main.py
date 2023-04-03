@@ -209,7 +209,12 @@ ticker_hist = run_query(
     """
 )
 
-avg_perf = pd.DataFrame(ticker_hist[1]).shape[1].loc[:, "data"].mean()
+
+
+# for index, tckr in enumerate(ticker_hist):
+
+st.write(ticker_hist)
+
 
 
 metrics = st.columns(5)
