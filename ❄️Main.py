@@ -136,6 +136,22 @@ ticker_prev = run_query(
     """
 )
 
+ticker_hist = run_query(
+    f"""
+        select distinct object_construct('t',t.ticker,
+            'p',array_agg(price::number(38,4) ) within group (order by price_date asc)
+        ) as data
+
+        from "STOCKFEED"."META"."ALL_PRICE_DATE"
+            t inner join str_app.usrdata.assets a on t.TICKER = UPPER(a.TICKER) 
+            and price_date between '{start_date}' and '{end_date}'
+        where a.id = '{port_id}'
+        group by t.ticker
+    """
+)
+
+
+
 
 metrics = st.columns(5)
 metrics[0].metric("Asset Count", len(ticker_hist))
@@ -143,6 +159,7 @@ metrics[1].metric("Avg Performance", "0")
 metrics[2].metric("Expense Ratio", ".04%")
 metrics[3].metric("Advancing", "5")
 metrics[4].metric("Declining", "6")
+
 
 
 
@@ -204,19 +221,6 @@ with c3:
     df = st.dataframe(industry)
 
 
-ticker_hist = run_query(
-    f"""
-        select distinct object_construct('t',t.ticker,
-            'p',array_agg(price::number(38,4) ) within group (order by price_date asc)
-        ) as data
-
-        from "STOCKFEED"."META"."ALL_PRICE_DATE"
-            t inner join str_app.usrdata.assets a on t.TICKER = UPPER(a.TICKER) 
-            and price_date between '{start_date}' and '{end_date}'
-        where a.id = '{port_id}'
-        group by t.ticker
-    """
-)
 
 
 with st.expander("Asset Performance -", expanded=True):
