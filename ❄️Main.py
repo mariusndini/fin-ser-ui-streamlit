@@ -209,14 +209,14 @@ ticker_hist = run_query(
     """
 )
 
-metrics = st.columns(7)
-metrics[0].metric("Asset Count", len(ticker_hist), "0")
-metrics[1].metric("Performance", "-2%")
+avg_perf = ticker_hist.loc[:, 'data'].mean()
+
+metrics = st.columns(5)
+metrics[0].metric("Asset Count", len(ticker_hist))
+metrics[1].metric("Avg Performance", avg_perf)
 metrics[2].metric("Expense Ratios", ".04%")
 metrics[3].metric("Expense Ratios", ".04%")
 metrics[4].metric("Expense Ratios", ".04%")
-metrics[5].metric("Expense Ratios", ".04%")
-metrics[6].metric("Expense Ratios", ".04%")
 
 
 with st.expander("Asset Performance -", expanded=True):
