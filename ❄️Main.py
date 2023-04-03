@@ -209,7 +209,8 @@ ticker_hist = run_query(
     """
 )
 
-avg_perf = 1.2 #ticker_hist.loc[:, 'data'].mean()
+avg_perf = pd.DataFrame(ticker_hist[1]).loc[:, 'data'].mean()
+
 
 metrics = st.columns(5)
 metrics[0].metric("Asset Count", len(ticker_hist))
