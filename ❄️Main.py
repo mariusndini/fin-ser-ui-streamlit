@@ -209,7 +209,7 @@ ticker_hist = run_query(
     """
 )
 
-avg_perf = pd.DataFrame(ticker_hist[1]).loc[:, 'data'].mean()
+avg_perf = pd.DataFrame(ticker_hist[1]).loc[:, 1].mean()
 
 
 metrics = st.columns(5)
