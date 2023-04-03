@@ -137,6 +137,15 @@ ticker_prev = run_query(
 )
 
 
+metrics = st.columns(5)
+metrics[0].metric("Asset Count", len(ticker_hist))
+metrics[1].metric("Avg Performance", "0")
+metrics[2].metric("Expense Ratio", ".04%")
+metrics[3].metric("Advancing", "5")
+metrics[4].metric("Declining", "6")
+
+
+
 tickers = []
 deltas = []
 sectors =[]
@@ -208,17 +217,6 @@ ticker_hist = run_query(
         group by t.ticker
     """
 )
-
-
-
-# for index, tckr in enumerate(ticker_hist):
-
-metrics = st.columns(5)
-metrics[0].metric("Asset Count", len(ticker_hist))
-metrics[1].metric("Avg Performance", "0")
-metrics[2].metric("Expense Ratios", ".04%")
-metrics[3].metric("Expense Ratios", ".04%")
-metrics[4].metric("Expense Ratios", ".04%")
 
 
 with st.expander("Asset Performance -", expanded=True):
