@@ -213,13 +213,9 @@ ticker_hist = run_query(
 
 # for index, tckr in enumerate(ticker_hist):
 
-st.write(ticker_hist)
-
-
-
 metrics = st.columns(5)
 metrics[0].metric("Asset Count", len(ticker_hist))
-metrics[1].metric("Avg Performance", avg_perf)
+metrics[1].metric("Avg Performance", "0")
 metrics[2].metric("Expense Ratios", ".04%")
 metrics[3].metric("Expense Ratios", ".04%")
 metrics[4].metric("Expense Ratios", ".04%")
