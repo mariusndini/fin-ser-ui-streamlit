@@ -257,7 +257,7 @@ with st.expander("Asset Performance -", expanded=True):
         end_price = y["p"][ len(y["p"])-1 ]
 
         # trend = "❇️" if (end_price - str_price)>=0 else "🔻"
-        d = end_price - str_price
+        d = (end_price - str_price) / end_price
         if(d < -.01):
             trend = "🔻"
         if(d >= -.01 and d < 0.01):
