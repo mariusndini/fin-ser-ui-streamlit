@@ -178,7 +178,7 @@ with c1:
 with c2:
     st.header('USA CPI Index')
     st.write('United States Consumer Price Index (Inflation) numbers.')
-    cpi = [ ['Jan', 4.2], ['Feb', 5.5], ['Mar', 6.5], ['Apr', 7.8], ['May', 7.5], ['Jun', 8.6], ['Jul', 8.2], ['Aug', 8.3] ]
+    cpi = [ ['Jul', 0.0], ['Aug', 0.2], ['Sep', 0.4], ['Oct', 0.5], ['Nov', 0.2], ['Dec', 0.1], ['Jan', 0.5], ['Feb', 0.4] ]
     st.plotly_chart(mycode.make_cpi(data=cpi), use_container_width=True, config={'staticPlot': True})
 
 with c3:
