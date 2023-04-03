@@ -185,12 +185,13 @@ for index, tckr in enumerate(ticker_current):
 
 
 
-metrics = st.columns(5)
+metrics = st.columns(6)
 metrics[0].metric("Asset Count", len(ticker_hist))
 metrics[1].metric("Avg Performance", f'{round((d_total/len(ticker_hist))*100,2)}%')
 metrics[2].metric("Expense Ratio", ".04%")
-metrics[3].metric("Declining", market_advance[0][1] + market_advance[1][1] + market_advance[2][1]  )
-metrics[4].metric("Advancing", market_advance[4][1] + market_advance[5][1] + market_advance[6][1] )
+metrics[3].metric("Declining", market_advance[0][1] + market_advance[1][1] + market_advance[2][1] )
+metrics[4].metric("Stable", market_advance[3][1] )
+metrics[5].metric("Advancing", market_advance[4][1] + market_advance[5][1] + market_advance[6][1] )
 
 
 
