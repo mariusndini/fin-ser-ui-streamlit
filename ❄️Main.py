@@ -256,7 +256,17 @@ with st.expander("Asset Performance -", expanded=True):
         str_price = y["p"][0]
         end_price = y["p"][ len(y["p"])-1 ]
 
-        trend = "❇️" if (end_price - str_price)>=0 else "🔻"
+        # trend = "❇️" if (end_price - str_price)>=0 else "🔻"
+        d = end_price - str_price
+        if(d < -.01):
+            trend = "🔻"
+        if(d >= -.01 and d < 0.01):
+            trend = '↔️'
+        if(d >= 0.01):
+            trend = "❇️" 
+
+
+
 
         cols[ index % num_columns ].subheader(f'{trend}{y["t"]}')
         cols[ index % num_columns ].markdown(f'<p class="med-font">{round((((end_price-str_price)/str_price)*100),2) }%</p><p class="little-font">${str_price} - ${end_price}</p>', unsafe_allow_html=True)
