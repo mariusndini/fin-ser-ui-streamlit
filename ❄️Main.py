@@ -199,12 +199,12 @@ metrics[5].metric("Advancing", market_advance[4][1] + market_advance[5][1] + mar
 c1, c2, c3 = st.columns(3)
 with c1:
     st.header('Advance / Decline')
-    st.write('Assets bucketed based on which stocks price increased or decreased withen timeframe.')
+    st.write('Assets bucketed based on which stocks price increased or decreased within timeframe.')
     st.plotly_chart(mycode.make_adv_dec_bar(data=market_advance), use_container_width=True, config={'staticPlot': True})
 
 with c2:
-    st.header('USA CPI Index')
-    st.write('United States Consumer Price Index (Inflation) numbers. MoM')
+    st.header('USA CPI Index (MoM)')
+    st.write('United States Consumer Price Index (Inflation) numbers.')
     cpi = [ ['Jul', 0.0], ['Aug', 0.2], ['Sep', 0.4], ['Oct', 0.5], ['Nov', 0.2], ['Dec', 0.1], ['Jan', 0.5], ['Feb', 0.4] ]
     st.plotly_chart(mycode.make_cpi(data=cpi), use_container_width=True, config={'staticPlot': True})
 
@@ -224,7 +224,7 @@ with c3:
 
 
 
-with st.expander("Asset Performance -", expanded=True):
+with st.expander("Asset Performance", expanded=True):
     rc1, rc2, rc3 = st.columns(3)
     offset = 0
     num_charts = 40
